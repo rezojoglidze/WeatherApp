@@ -8,7 +8,6 @@
 import Foundation
 
 protocol AuthorizationViewModelProtocol {
-    func showError(text: String)
     func authorization(username: String, password: String)
 }
 
@@ -19,9 +18,5 @@ class AuthorizationViewModel {
 extension AuthorizationViewModel: AuthorizationViewModelProtocol {
     func authorization(username: String, password: String) {
         User.current = User(userName: username, password: password)
-    }
-    
-    func showError(text: String) {
-        print("dasda")
     }
 }

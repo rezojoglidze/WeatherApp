@@ -14,6 +14,7 @@
 		A91F7C8C27BE4BEB00A5EEDF /* MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91F7C8A27BE4BEB00A5EEDF /* MapView.storyboard */; };
 		A91F7C8E27BE4BEC00A5EEDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A91F7C8D27BE4BEC00A5EEDF /* Assets.xcassets */; };
 		A91F7C9127BE4BEC00A5EEDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91F7C8F27BE4BEC00A5EEDF /* LaunchScreen.storyboard */; };
+		A9272C0B27BFF4F8003964A2 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9272C0A27BFF4F8003964A2 /* UserDefaults.swift */; };
 		A985454227BF7CB800653488 /* BasicResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985454127BF7CB800653488 /* BasicResponseHandler.swift */; };
 		A985454427BF7CD100653488 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985454327BF7CD100653488 /* BaseAPI.swift */; };
 		A985454827BF7D4500653488 /* BasicResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A985454727BF7D4500653488 /* BasicResponseError.swift */; };
@@ -39,6 +40,7 @@
 		A91F7C8B27BE4BEB00A5EEDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MapView.storyboard; sourceTree = "<group>"; };
 		A91F7C8D27BE4BEC00A5EEDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A91F7C9027BE4BEC00A5EEDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A9272C0A27BFF4F8003964A2 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		A985454127BF7CB800653488 /* BasicResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicResponseHandler.swift; sourceTree = "<group>"; };
 		A985454327BF7CD100653488 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		A985454727BF7D4500653488 /* BasicResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicResponseError.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 				A9B849A327BED812007B9CE9 /* SupportingFiles */,
 			);
 			path = WeatherApp;
+			sourceTree = "<group>";
+		};
+		A9272C0927BFF4E7003964A2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A9272C0A27BFF4F8003964A2 /* UserDefaults.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		A985454027BF7CA900653488 /* Networking */ = {
@@ -177,6 +187,7 @@
 		A9B8499E27BED7AD007B9CE9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A9272C0927BFF4E7003964A2 /* Managers */,
 				A985454527BF7D1F00653488 /* Entities */,
 				A985454027BF7CA900653488 /* Networking */,
 				A9A4BD2427BF67E800403345 /* Constants */,
@@ -374,6 +385,7 @@
 				A9A4BD1F27BEE0DD00403345 /* AuthorizationViewModel.swift in Sources */,
 				A91F7C8727BE4BEB00A5EEDF /* SceneDelegate.swift in Sources */,
 				A9A4BD2327BEE6A700403345 /* User.swift in Sources */,
+				A9272C0B27BFF4F8003964A2 /* UserDefaults.swift in Sources */,
 				A9A4BD2627BF67F700403345 /* Constants.swift in Sources */,
 				A985454A27BF7F4E00653488 /* CurrentWeather.swift in Sources */,
 				A985454427BF7CD100653488 /* BaseAPI.swift in Sources */,
@@ -529,6 +541,7 @@
 				DEVELOPMENT_TEAM = YC9A76K73N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -560,6 +573,7 @@
 				DEVELOPMENT_TEAM = YC9A76K73N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

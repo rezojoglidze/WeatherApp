@@ -16,14 +16,13 @@ class AuthorizationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("dasdsa")
     }
     
     // MARK: - Actions
     @IBAction func loginClicked(_ sender: Any) {
 //        if validate() {
         openMapViewScreen()
-            viewModel.authorization(username: usernameTextField.text ?? .empty, password: passwordTextField.text ?? .empty)
+        viewModel.authorization(username: usernameTextField.text ?? .empty, password: passwordTextField.text ?? .empty)
 //        }
     }
     

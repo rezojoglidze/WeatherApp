@@ -20,17 +20,55 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gP5-T7-Q7c">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
+                            <view hidden="YES" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cs-SD-os3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohj-gF-MWy">
+                                        <rect key="frame" x="177.5" y="433" width="59" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byq-h2-iAs">
+                                        <rect key="frame" x="25" y="479" width="364" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="8Xy-Kv-818"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="დახურვა"/>
+                                        <connections>
+                                            <action selector="didTappLocationPermissionViewCloseBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O4l-1P-2BU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Ohj-gF-MWy" firstAttribute="centerY" secondItem="7cs-SD-os3" secondAttribute="centerY" id="aK7-fD-PsS"/>
+                                    <constraint firstAttribute="trailing" secondItem="byq-h2-iAs" secondAttribute="trailing" constant="25" id="aqi-7y-zQ0"/>
+                                    <constraint firstItem="Ohj-gF-MWy" firstAttribute="centerX" secondItem="7cs-SD-os3" secondAttribute="centerX" id="f1b-mD-cdv"/>
+                                    <constraint firstItem="byq-h2-iAs" firstAttribute="top" secondItem="Ohj-gF-MWy" secondAttribute="bottom" constant="16" id="hgS-C6-J62"/>
+                                    <constraint firstItem="byq-h2-iAs" firstAttribute="leading" secondItem="7cs-SD-os3" secondAttribute="leading" constant="25" id="lkU-JA-QdM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7cs-SD-os3" secondAttribute="trailing" id="5la-iY-GLi"/>
                             <constraint firstItem="gP5-T7-Q7c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FUT-qq-Kxc"/>
                             <constraint firstItem="gP5-T7-Q7c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="J1r-OB-fzj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gP5-T7-Q7c" secondAttribute="bottom" id="O2B-cV-2dA"/>
+                            <constraint firstItem="7cs-SD-os3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="eX7-jg-AVQ"/>
+                            <constraint firstAttribute="bottom" secondItem="7cs-SD-os3" secondAttribute="bottom" id="itR-Q4-HAh"/>
+                            <constraint firstItem="7cs-SD-os3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jWe-CO-VYP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gP5-T7-Q7c" secondAttribute="trailing" id="rD0-ie-vPR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="locationPermissionStatusLabel" destination="Ohj-gF-MWy" id="s31-yh-Rcg"/>
+                        <outlet property="locationPermissionStatusView" destination="7cs-SD-os3" id="5xk-Uq-8k4"/>
                         <outlet property="mapView" destination="gP5-T7-Q7c" id="CQd-Fn-Utx"/>
                     </connections>
                 </viewController>
@@ -40,8 +78,14 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

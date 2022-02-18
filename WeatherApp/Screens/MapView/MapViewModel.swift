@@ -9,7 +9,6 @@ import Foundation
 import CoreLocation
 import RxSwift
 import RxCocoa
-import UIKit
 
 protocol MapViewModelProtocol {
     
@@ -40,21 +39,3 @@ extension MapViewModel: MapViewModelProtocol {
         }
     }
 }
-
-
-/*
- Here is the code you're looking for, I guess:
-
- if let url = URL(string: UIApplicationOpenSettingsURLString) {
-     if UIApplication.shared.canOpenURL(url) {
-         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-     }
- }
- And in addition, the updated version for swift 5 :
-
- if let url = URL(string: UIApplication.openSettingsURLString) {
-     if UIApplication.shared.canOpenURL(url) {
-         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-     }
- }
- */

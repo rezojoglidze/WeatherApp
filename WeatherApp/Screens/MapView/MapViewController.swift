@@ -10,18 +10,11 @@ import CoreLocation
 import RxSwift
 import MapKit
 
-/*
- - გამოიყენე https://openweathermap.org/api
- - იუზერის ავტორიზაცია
- - გამოართვი ლოკაციის პერმიშენი +
- - ლოკაციის მიხედვით ჩატვირთე ამინდის პროგნოზი
- - როცა იუზერი შეიცვლის ლოკაციას ამინდის პროგნოზი განახლდეს
- - თუ იუზერმა გათიშა ლოკაციის პერმიშენი სეთინგებიდან, აპლიკაციას გადაეფაროს სქრინი წარწერით "Give us location permissions" და ქვემოთ ღილაკი "Go to settings"
- */
-
 class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
-  
+    @IBOutlet private weak var locationPermissionStatusView: UIView!
+    @IBOutlet private weak var locationPermissionStatusLabel: UILabel!
+    
     var viewModel: MapViewModelProtocol!
     private let locationManager = CLLocationManager()
     private let disposeBag = DisposeBag()
@@ -30,20 +23,11 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupObservables()
+        
         self.navigationItem.title = "რუკა"
-        
-        // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
-
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+        checkIfUserHasAcceptedLocationPermission()
+        setupObservables()
+        setupLocationManager()
     }
     
     private func setupObservables() {
@@ -57,6 +41,42 @@ class MapViewController: UIViewController {
             let weaherInfo = WeatherInfo(title: title, coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon))
             mapView.addAnnotation(weaherInfo)
         }
+    }
+    
+    private func checkIfUserHasAcceptedLocationPermission() {
+        if UserDefaults.firstLaunchCompleted {
+            locationPermissionStatusView.isHidden = false
+            
+            switch locationManager.authorizationStatus {
+            case .notDetermined, .restricted, .denied:
+                locationPermissionStatusView.backgroundColor = .red
+                locationPermissionStatusLabel.text = "არ არის ნებადართული"
+            case .authorizedAlways, .authorizedWhenInUse:
+                locationPermissionStatusLabel.text = "ნებადართულია"
+            default:
+                break
+            }
+        } else {
+            UserDefaults.firstLaunchCompleted = true
+        }
+    }
+    
+    private func setupLocationManager() {
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    @IBAction func didTappLocationPermissionViewCloseBtn(_ sender: Any) {
+        locationPermissionStatusView.isHidden = true
     }
 }
 
