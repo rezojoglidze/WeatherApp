@@ -10,13 +10,26 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    
+    //https://medium.com/@dpeachesdev/how-to-start-an-ios-app-with-scenedelegate-without-storyboards-f313d70a3710
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+        guard let authViewController = configureAuthorizationView() else { return }
+        let navigationController = UINavigationController(rootViewController: authViewController)
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    private func configureAuthorizationView() -> UIViewController? {
+        let storyBoard = UIStoryboard(name: "Authorization", bundle: nil)
+        guard let viewController = storyBoard.instantiateViewController(withIdentifier: "Authorization") as? AuthorizationViewController else { return nil }
+        let viewModel = AuthorizationViewModel()
+        viewController.viewModel = viewModel
+        return viewController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -49,4 +62,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+
+/*
+ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+     guard let windowScene = (scene as? UIWindowScene) else { return }
+     window = UIWindow(windowScene: windowScene)
+     guard let authViewController = configureAuthorizationView() else { return }
+     self.window?.rootViewController = authViewController
+     self.window?.makeKeyAndVisible()
+ }
+ 
+ private func configureAuthorizationView() -> UIViewController? {
+     let storyBoard = UIStoryboard(name: "Authorization", bundle: nil)
+     guard let viewController = storyBoard.instantiateViewController(withIdentifier: "Authorization") as? AuthorizationViewController else { return nil }
+     let viewModel = AuthorizationViewModel()
+     viewController.viewModel = viewModel
+     return viewController
+ }
+ */
 
